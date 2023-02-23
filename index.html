@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Decodificador Alura</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="reset.css">
+	</head>
+
+	<body>
+		
+		<header>
+			<img src="logo.png" class="logo" alt="Logo Alura">
+		</header>
+
+		<div class="main-body">
+			<form>
+				<textarea placeholder="Digite aqui..." class="texto" id="texto"></textarea>
+				<!--<input type="submit" value="Criptografar" class="criptografar" name="criptografar"/>-->
+			</form>
+
+			<div class="info-botoes">
+
+				<p class="info"><img src="info.png" alt="Caracter de informação"> Apenas letras minúsculas e sem acento.</p>
+				
+				<button class="criptografar" onclick="verificaTexto()">Criptografar</button>
+				<button class="descriptografar" onclick="localizaString()">Descriptografar</button>
+				
+			</div>
+
+		</div>
+
+		<div class="area-resultado" id="area-resultado">
+			<img src="image.png" class="image">
+
+			<p class="mensagem1"><strong>Nenhuma mensagem encontrada</strong></p>
+			<p class="mensagem2">Digite um texto que você deseja criptografar ou descriptografar.</p>
+		</div>
+
+		<!--<footer>
+			<p>Aluna Maria Rita Bley</p>
+		</footer>-->
+
+
+	</body>
+
+</html>
+
+<script>
+
+	function verificaTexto() {
+		
+		var texto = document.getElementById('texto').value;
+		console.log(texto);
+
+		var separador = texto.split('');
+		console.log(separador);
+
+		var repeticao = 1;
+
+		var testeArray = 0;
+		for(var i = 0; i < separador.length; i++){
+			
+			console.log('repetiu' + repeticao);
+			repeticao++
+
+			if(separador[testeArray] == 'a'){
+				separador[testeArray] = 'ai';
+			} else if(separador[testeArray] == 'e'){
+				separador[testeArray] = 'enter';
+			} else if(separador[testeArray] == 'i'){
+				separador[testeArray] = 'imes';
+			} else if(separador[testeArray] == 'o'){
+				separador[testeArray] = 'ober';
+			}else if(separador[testeArray] == 'u'){
+				separador[testeArray] = 'ufat'
+			}else {
+
+			}
+
+			testeArray++;
+
+		}
+
+		console.log(separador);
+
+		var juntaTexto = separador.join('');
+
+		console.log(juntaTexto);
+
+		let myDiv = document.querySelector('#area-resultado');
+
+		myDiv.innerHTML = '<textarea readonly id="text" class="area-resultado2">' + juntaTexto + '</textarea>' + '<button class="btn-copiar" id="copiar" onclick="copiar()">Copiar</button>'
+
+	}
+
+	function localizaString() {
+			var string = document.getElementById('texto').value;
+			var substring = 'enter';
+			var posicao = string.indexOf(substring);
+			console.log(posicao);
+
+
+			while (posicao >= 0){
+				posicao = string.indexOf(substring);
+				string = string.replace('enter', 'e');
+				console.log(string);
+						
+			}
+
+			substring = 'imes';
+			posicao = string.indexOf(substring);
+			
+			while (posicao >= 0){
+				posicao = string.indexOf(substring);
+				string = string.replace('imes', 'i');
+				console.log(string);
+						
+			}
+
+			substring = 'ober';
+			posicao = string.indexOf(substring);
+			
+			while (posicao >= 0){
+				posicao = string.indexOf(substring);
+				string = string.replace('ober', 'o');
+				console.log(string);
+						
+			}
+
+			substring = 'ufat';
+			posicao = string.indexOf(substring);
+			
+			while (posicao >= 0){
+				posicao = string.indexOf(substring);
+				string = string.replace('ufat', 'u');
+				console.log(string);
+						
+			}
+
+			substring = 'ai';
+			posicao = string.indexOf(substring);
+
+			while (posicao >= 0){
+				posicao = string.indexOf(substring);
+				string = string.replace('ai', 'a');
+				console.log(string);
+						
+			}
+
+			let myDiv = document.querySelector('#area-resultado');
+
+			myDiv.innerHTML = '<textarea readonly id="text" class="area-resultado2">' + string + '</textarea>' + '<button class="btn-copiar" id="copiar" onclick="copiar()">Copiar</button>'
+			
+		}
+
+		function copiar() {
+			var texto = document.getElementById('text');
+		    texto.select();
+		    document.execCommand('copy');
+		    alert("Texto copiado ;D");
+		}
+	
+
+
+	var button = document.querySelector('criptografar');
+	//button.onclick = verificaTexto;
+
+
+</script>
